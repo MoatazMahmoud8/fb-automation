@@ -3,7 +3,7 @@
 ## Your Gemini API Key Details
 
 ```
-API Key: AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro
+API Key: YOUR_GEMINI_API_KEY
 Project: projects/999369531191
 Project Number: 999369531191
 Name: Gemini API Key
@@ -69,7 +69,7 @@ notepad .env
 ```
 NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
 
-GEMINI_API_KEY=AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 
 FB_PAGE_TOKEN=your_facebook_page_token_here
 
@@ -83,7 +83,7 @@ FB_PAGE_ID=your_facebook_page_id_here
 **Linux/Mac:**
 ```bash
 export NEWS_API_KEY="bd3749c6a550467da6dd1fe30fed9cbc"
-export GEMINI_API_KEY="AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro"
+export GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 export FB_PAGE_TOKEN="your_facebook_page_token_here"
 export FB_PAGE_ID="your_facebook_page_id_here"
 
@@ -93,7 +93,7 @@ python simple_automation.py
 **Windows:**
 ```cmd
 set NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
-set GEMINI_API_KEY=AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro
+set GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 set FB_PAGE_TOKEN=your_facebook_page_token_here
 set FB_PAGE_ID=your_facebook_page_id_here
 
@@ -129,7 +129,7 @@ python simple_automation.py
 import os
 import google.generativeai as genai
 
-os.environ["GEMINI_API_KEY"] = "AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro"
+os.environ["GEMINI_API_KEY"] = "YOUR_GEMINI_API_KEY"
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 model = genai.GenerativeModel('gemini-1.5-flash')
@@ -165,7 +165,7 @@ https://github.com/YOUR_USERNAME/fb-automation/settings/secrets/actions
 
 **Secret 2: GEMINI_API_KEY**
 - Name: `GEMINI_API_KEY`
-- Value: `AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro`
+- Value: `YOUR_GEMINI_API_KEY`
 - Click "Add secret"
 
 **Secret 3: FB_PAGE_TOKEN**
@@ -213,7 +213,7 @@ GitHub Actions → reads from GitHub Secrets → uses API keys → posts to Face
 
 ## 🔒 Security Checklist
 
-- [x] API Key provided: AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro
+- [x] API Key provided: YOUR_GEMINI_API_KEY
 - [ ] .env file created with all keys
 - [ ] .env is in .gitignore
 - [ ] .env NOT committed to git

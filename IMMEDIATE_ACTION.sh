@@ -7,7 +7,7 @@ echo "╚═══════════════════════�
 echo ""
 
 echo "Your Gemini API Key Details:"
-echo "  API Key: AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro"
+echo "  API Key: YOUR_GEMINI_API_KEY"
 echo "  Project: projects/999369531191"
 echo "  Status: ✅ Ready to use"
 echo ""
@@ -35,7 +35,7 @@ echo ""
 echo "Option B - MANUAL:"
 echo "  1. cp .env.example .env"
 echo "  2. Edit .env and add:"
-echo "     GEMINI_API_KEY=AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro"
+echo "     GEMINI_API_KEY=YOUR_GEMINI_API_KEY"
 echo "  3. Add your Facebook token and page ID"
 echo ""
 

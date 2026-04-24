@@ -6,7 +6,7 @@
 | API | Status | Key |
 |-----|--------|-----|
 | NewsAPI | ✅ Provided | `bd3749c6a550467da6dd1fe30fed9cbc` |
-| Gemini | ✅ Provided | `AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro` |
+| Gemini | ✅ Provided | `YOUR_GEMINI_API_KEY` |
 | Project | ✅ Provided | `projects/999369531191` |
 | Facebook | ⏳ Needed | Get from developers.facebook.com |
 | Page ID | ⏳ Needed | Get from facebook.com |
@@ -136,7 +136,7 @@ test-gemini-key.bat
 ```
 🔍 Testing your Gemini API Key...
 
-Testing API Key: AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro
+Testing API Key: YOUR_GEMINI_API_KEY
 
 📝 Sending test request to Gemini...
 ✅ Gemini API Key is VALID!

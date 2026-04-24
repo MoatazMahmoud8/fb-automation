@@ -17,7 +17,7 @@ if ! python3 -c "import google.generativeai" 2>/dev/null; then
 fi
 
 # Test the API key
-echo "Testing API Key: AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro"
+echo "Testing API Key: YOUR_GEMINI_API_KEY"
 echo ""
 
 python3 << 'EOF'
@@ -26,7 +26,7 @@ import sys
 
 try:
     # Configure with the provided API key
-    api_key = "AIzaSyCsz1kt8TZQ4RwlmG-YOxjDB0_-NTwJ2Ro"
+    api_key = "YOUR_GEMINI_API_KEY"
     genai.configure(api_key=api_key)
     
     # Try to create a model
