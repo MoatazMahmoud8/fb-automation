@@ -60,6 +60,10 @@ def post_to_facebook(content):
         page.click('button[name="login"]')
         page.wait_for_timeout(6000)
 
+        # Screenshot after login attempt
+        page.screenshot(path="screenshot_after_login.png")
+        print(f"Post-login URL: {page.url}")
+
         # Check login succeeded
         if "login" in page.url:
             raise RuntimeError("Facebook login failed — check FB_EMAIL / FB_PASSWORD secrets.")
@@ -69,6 +73,8 @@ def post_to_facebook(content):
         print(f"Navigating to Page: {page_url}")
         page.goto(page_url, wait_until="networkidle")
         page.wait_for_timeout(4000)
+        page.screenshot(path="screenshot_page.png")
+        print(f"Page URL after navigation: {page.url}")
 
         # --- Open the 'Create Post' composer ---
         print("Opening post composer...")
@@ -76,17 +82,20 @@ def post_to_facebook(content):
             'div[role="button"]:has-text("What\'s on your mind")',
             'div[aria-placeholder="What\'s on your mind?"]',
             'span:has-text("Write something")',
+            '[data-pagelet="ProfileComposer"]',
         ]
         clicked = False
         for selector in composer_selectors:
             try:
                 page.click(selector, timeout=5000)
                 clicked = True
+                print(f"Clicked composer with selector: {selector}")
                 break
             except Exception:
                 continue
 
         if not clicked:
+            page.screenshot(path="screenshot_no_composer.png")
             raise RuntimeError("Could not find the post composer. Facebook's UI may have changed.")
 
         page.wait_for_timeout(2000)
@@ -107,14 +116,17 @@ def post_to_facebook(content):
             try:
                 page.click(selector, timeout=5000)
                 posted = True
+                print(f"Clicked post button with selector: {selector}")
                 break
             except Exception:
                 continue
 
         if not posted:
+            page.screenshot(path="screenshot_no_post_btn.png")
             raise RuntimeError("Could not find the Post button.")
 
         page.wait_for_timeout(5000)
+        page.screenshot(path="screenshot_posted.png")
         print("Successfully posted!")
         browser.close()
 

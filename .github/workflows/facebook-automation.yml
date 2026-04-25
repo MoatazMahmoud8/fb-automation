@@ -32,8 +32,11 @@ jobs:
           FB_PASSWORD: ${{ secrets.FB_PASSWORD }}
           FB_PAGE_NAME: ${{ secrets.FB_PAGE_NAME }}
         run: python main.py
-      
-      - name: Notify on failure (optional)
-        if: failure()
-        run: |
-          echo "❌ Facebook automation failed. Check logs for details."
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshots
+          path: screenshot_*.png
+          if-no-files-found: ignore
