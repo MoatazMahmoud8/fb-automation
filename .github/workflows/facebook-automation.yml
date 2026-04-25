@@ -20,23 +20,18 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: pip install requests google-generativeai
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium --with-deps
 
-      - name: Execute News Bot
+      - name: Run Script
         env:
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-        run: python simple_automation.py
-      
-      - name: Upload logs (on failure)
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: logs
-          path: logs/
-          retention-days: 7
+          FB_EMAIL: ${{ secrets.FB_EMAIL }}
+          FB_PASSWORD: ${{ secrets.FB_PASSWORD }}
+          FB_PAGE_NAME: ${{ secrets.FB_PAGE_NAME }}
+        run: python main.py
       
       - name: Notify on failure (optional)
         if: failure()
