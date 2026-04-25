@@ -45,15 +45,24 @@ def get_news():
 
 
 def format_with_gemini(raw_news):
-    """Rewrite the news for Facebook using Gemini."""
+    """Rewrite the news for Facebook using Gemini, with fallback to raw news."""
     client = genai.Client(api_key=GEMINI_API_KEY)
     prompt = (
         "Rewrite this news for an Australian Facebook audience in a professional yet "
         "engaging tone. Use emojis and include relevant hashtags like #Australia #AussieNews.\n\n"
         f"Text: {raw_news}"
     )
-    response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
-    return response.text
+    for model in ["gemini-1.5-flash", "gemini-2.0-flash-lite", "gemini-2.0-flash"]:
+        try:
+            response = client.models.generate_content(model=model, contents=prompt)
+            print(f"Gemini model used: {model}")
+            return response.text
+        except Exception as e:
+            print(f"Model {model} failed: {e}")
+            continue
+    # Fallback: post raw news with basic formatting
+    print("All Gemini models failed — posting raw news.")
+    return f"🇦🇺 Australian News Update\n\n{raw_news}\n\n#Australia #AussieNews #News"
 
 
 def post_to_facebook(content):
