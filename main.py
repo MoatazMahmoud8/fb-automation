@@ -1,40 +1,58 @@
 import os
 import time
 import requests
-import google.generativeai as genai
+import xml.etree.ElementTree as ET
+from google import genai
 from playwright.sync_api import sync_playwright
 
 # Environment variables
-NEWS_API_KEY  = os.environ["NEWS_API_KEY"]
 GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
 FB_EMAIL      = os.environ["FB_EMAIL"]
 FB_PASSWORD   = os.environ["FB_PASSWORD"]
 # Your Facebook Page name/slug, e.g. "AussieNewsPage" from facebook.com/AussieNewsPage
 FB_PAGE_NAME  = os.environ.get("FB_PAGE_NAME", "me")
 
+# Free Australian RSS feeds — no API key required
+RSS_FEEDS = [
+    "https://www.abc.net.au/news/feed/51120/rss.xml",           # ABC News Australia
+    "https://feeds.skynews.com/feeds/rss/australia.xml",        # Sky News Australia
+    "https://www.smh.com.au/rss/feed.xml",                      # Sydney Morning Herald
+]
+
 
 def get_news():
-    """Fetch top Australian headline from NewsAPI."""
-    url = f"https://newsapi.org/v2/top-headlines?country=au&apiKey={NEWS_API_KEY}"
-    response = requests.get(url, timeout=30).json()
-    articles = response.get("articles", [])
-    if not articles:
-        print("No articles found.")
-        return None
-    article = articles[0]
-    return f"Title: {article['title']}\nDescription: {article['description']}"
+    """Fetch top Australian headline from RSS feeds."""
+    for feed_url in RSS_FEEDS:
+        try:
+            resp = requests.get(feed_url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
+            resp.raise_for_status()
+            root = ET.fromstring(resp.content)
+            items = root.findall(".//item")
+            if items:
+                item = items[0]
+                title = item.findtext("title", "").strip()
+                desc  = item.findtext("description", "").strip()
+                # Strip HTML tags from description
+                import re
+                desc = re.sub(r"<[^>]+>", "", desc).strip()
+                print(f"Fetched news from: {feed_url}")
+                return f"Title: {title}\nDescription: {desc}"
+        except Exception as e:
+            print(f"Failed to fetch {feed_url}: {e}")
+            continue
+    print("No articles found from any RSS feed.")
+    return None
 
 
 def format_with_gemini(raw_news):
     """Rewrite the news for Facebook using Gemini."""
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    client = genai.Client(api_key=GEMINI_API_KEY)
     prompt = (
         "Rewrite this news for an Australian Facebook audience in a professional yet "
         "engaging tone. Use emojis and include relevant hashtags like #Australia #AussieNews.\n\n"
         f"Text: {raw_news}"
     )
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
     return response.text
 
 
