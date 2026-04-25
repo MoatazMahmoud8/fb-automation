@@ -81,19 +81,62 @@ def post_to_facebook(content):
 
         # --- Login ---
         print("Logging into Facebook...")
-        page.goto("https://www.facebook.com/login", wait_until="networkidle")
+        page.goto("https://www.facebook.com/login", wait_until="domcontentloaded")
+        page.wait_for_timeout(3000)
+        page.screenshot(path="screenshot_login_page.png")
+
+        # Dismiss cookie/consent popup if present
+        for consent_sel in [
+            'button[data-cookiebanner="accept_button"]',
+            '[aria-label="Allow all cookies"]',
+            'button:has-text("Accept All")',
+            'button:has-text("Allow all cookies")',
+            'button:has-text("Accept")',
+            '[data-testid="cookie-policy-manage-dialog-accept-button"]',
+        ]:
+            try:
+                page.click(consent_sel, timeout=3000)
+                print(f"Dismissed consent popup: {consent_sel}")
+                page.wait_for_timeout(1000)
+                break
+            except Exception:
+                pass
+
+        # Wait for and fill email/password
+        page.wait_for_selector('input[name="email"]', timeout=15000)
         page.fill('input[name="email"]', FB_EMAIL)
         page.fill('input[name="pass"]', FB_PASSWORD)
-        page.click('button[name="login"]')
-        page.wait_for_timeout(6000)
+        page.screenshot(path="screenshot_before_login_click.png")
+
+        # Click login button — try multiple selectors
+        login_clicked = False
+        for login_sel in [
+            'button[name="login"]',
+            'input[name="login"]',
+            'button[type="submit"]',
+            '[data-testid="royal_login_button"]',
+        ]:
+            try:
+                page.click(login_sel, timeout=8000)
+                login_clicked = True
+                print(f"Clicked login button with: {login_sel}")
+                break
+            except Exception:
+                continue
+
+        if not login_clicked:
+            page.screenshot(path="screenshot_login_button_not_found.png")
+            raise RuntimeError("Could not find the login button.")
+
+        page.wait_for_timeout(7000)
 
         # Screenshot after login attempt
         page.screenshot(path="screenshot_after_login.png")
         print(f"Post-login URL: {page.url}")
 
         # Check login succeeded
-        if "login" in page.url:
-            raise RuntimeError("Facebook login failed — check FB_EMAIL / FB_PASSWORD secrets.")
+        if "login" in page.url or "checkpoint" in page.url:
+            raise RuntimeError(f"Facebook login failed or hit checkpoint. URL: {page.url}")
 
         # --- Navigate to Page ---
         page_url = f"https://www.facebook.com/{FB_PAGE_NAME}"
