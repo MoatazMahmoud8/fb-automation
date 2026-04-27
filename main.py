@@ -111,9 +111,10 @@ def post_to_facebook(content):
         # Click login button — try multiple selectors
         login_clicked = False
         for login_sel in [
-            'button[name="login"]',
-            'input[name="login"]',
+            'button:has-text("Log in")',
+            '[role="button"]:has-text("Log in")',
             'button[type="submit"]',
+            'button[name="login"]',
             '[data-testid="royal_login_button"]',
         ]:
             try:
@@ -123,6 +124,15 @@ def post_to_facebook(content):
                 break
             except Exception:
                 continue
+
+        if not login_clicked:
+            # Last resort: press Enter on the password field
+            try:
+                page.press('input[name="pass"]', "Enter")
+                login_clicked = True
+                print("Submitted login via Enter key")
+            except Exception:
+                pass
 
         if not login_clicked:
             page.screenshot(path="screenshot_login_button_not_found.png")
