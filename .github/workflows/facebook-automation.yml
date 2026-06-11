@@ -1,10 +1,11 @@
 name: Daily AU News Automation
 
 on:
-  schedule:
-    - cron: '0 23 * * *' # 9 AM Brisbane (23:00 UTC)
-    - cron: '0 2 * * *'  # 12 PM Brisbane (02:00 UTC)
-    - cron: '0 8 * * *'  # 6 PM Brisbane (08:00 UTC)
+  # Schedule disabled — uncomment to re-enable
+  # schedule:
+  #   - cron: '0 23 * * *' # 9 AM Brisbane (23:00 UTC)
+  #   - cron: '0 2 * * *'  # 12 PM Brisbane (02:00 UTC)
+  #   - cron: '0 8 * * *'  # 6 PM Brisbane (08:00 UTC)
   workflow_dispatch: # Allows you to run it manually for testing
 
 jobs:
