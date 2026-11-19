@@ -5,7 +5,7 @@
 ### API Keys Provided
 | API | Status | Key |
 |-----|--------|-----|
-| NewsAPI | ✅ Provided | `bd3749c6a550467da6dd1fe30fed9cbc` |
+| NewsAPI | ✅ Provided | `YOUR_NEWSAPI_KEY` |
 | Gemini | ✅ Provided | `YOUR_GEMINI_API_KEY` |
 | Project | ✅ Provided | `projects/999369531191` |
 | Facebook | ⏳ Needed | Get from developers.facebook.com |

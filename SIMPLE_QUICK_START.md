@@ -38,7 +38,7 @@ python simple_automation.py
 
 1. **NewsAPI** (Already provided ✓)
    ```
-   bd3749c6a550467da6dd1fe30fed9cbc
+   YOUR_NEWSAPI_KEY
    ```
 
 2. **Gemini API Key**
@@ -62,7 +62,7 @@ python simple_automation.py
 
 ```bash
 # Required
-NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
+NEWS_API_KEY=YOUR_NEWSAPI_KEY
 GEMINI_API_KEY=your_gemini_key_here
 FB_PAGE_TOKEN=your_facebook_token_here
 FB_PAGE_ID=your_facebook_page_id_here
@@ -212,7 +212,7 @@ python -m src.main
 1. **Test Connection First**
    ```bash
    # Make a test API call
-   curl "https://newsapi.org/v2/top-headlines?country=au&apiKey=bd3749c6a550467da6dd1fe30fed9cbc"
+   curl "https://newsapi.org/v2/top-headlines?country=au&apiKey=YOUR_NEWSAPI_KEY"
    ```
 
 2. **Check Logs**

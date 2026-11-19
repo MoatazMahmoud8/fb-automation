@@ -50,7 +50,7 @@ cat > .env << EOF
 # DO NOT commit this file to git!
 
 # News API (Already configured)
-NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
+NEWS_API_KEY=YOUR_NEWSAPI_KEY
 
 # Google Gemini API
 GEMINI_API_KEY=$GEMINI_KEY

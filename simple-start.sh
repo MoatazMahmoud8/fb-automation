@@ -35,7 +35,7 @@ if [ ! -f ".env" ]; then
     cp .env.example .env
     echo ""
     echo "📋 Please edit .env and add your API keys:"
-    echo "   • NEWS_API_KEY: bd3749c6a550467da6dd1fe30fed9cbc (already provided)"
+    echo "   • NEWS_API_KEY: YOUR_NEWSAPI_KEY (already provided)"
     echo "   • GEMINI_API_KEY: Get from https://aistudio.google.com/app/apikeys"
     echo "   • FB_PAGE_TOKEN: Get from https://developers.facebook.com"
     echo "   • FB_PAGE_ID: Your Facebook page ID"

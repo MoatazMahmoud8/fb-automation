@@ -75,7 +75,7 @@ python hybrid.py --test         # Test connections
 ### 1. Local Testing
 ```bash
 cd /home/moataz/work/fbautomation/repo
-export NEWS_API_KEY="bd3749c6a550467da6dd1fe30fed9cbc"
+export NEWS_API_KEY="YOUR_NEWSAPI_KEY"
 export GEMINI_API_KEY="your_gemini_key"
 export FB_PAGE_TOKEN="your_facebook_token"
 export FB_PAGE_ID="your_page_id"
@@ -145,7 +145,7 @@ If you graduate from simple automation, the production system provides:
 
 ### Simple Automation Environment Variables
 ```
-NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
+NEWS_API_KEY=YOUR_NEWSAPI_KEY
 GEMINI_API_KEY=your_gemini_key
 FB_PAGE_TOKEN=your_facebook_token
 FB_PAGE_ID=your_facebook_page_id

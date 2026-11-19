@@ -43,7 +43,7 @@ Fully automated system to fetch, summarize, and post Australian news to your Fac
 
 **NewsAPI** (Already provided):
 ```
-Key: bd3749c6a550467da6dd1fe30fed9cbc
+Key: YOUR_NEWSAPI_KEY
 ```
 
 **Google Gemini API**:

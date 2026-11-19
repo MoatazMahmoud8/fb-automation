@@ -50,7 +50,7 @@ echo 💾 Updating .env file...
     echo # DO NOT commit this file to git!
     echo.
     echo # News API ^(Already configured^)
-    echo NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
+    echo NEWS_API_KEY=YOUR_NEWSAPI_KEY
     echo.
     echo # Google Gemini API
     echo GEMINI_API_KEY=%GEMINI_KEY%

@@ -67,7 +67,7 @@ notepad .env
 
 **3. Add your credentials:**
 ```
-NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
+NEWS_API_KEY=YOUR_NEWSAPI_KEY
 
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 
@@ -82,7 +82,7 @@ FB_PAGE_ID=your_facebook_page_id_here
 
 **Linux/Mac:**
 ```bash
-export NEWS_API_KEY="bd3749c6a550467da6dd1fe30fed9cbc"
+export NEWS_API_KEY="YOUR_NEWSAPI_KEY"
 export GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 export FB_PAGE_TOKEN="your_facebook_page_token_here"
 export FB_PAGE_ID="your_facebook_page_id_here"
@@ -92,7 +92,7 @@ python simple_automation.py
 
 **Windows:**
 ```cmd
-set NEWS_API_KEY=bd3749c6a550467da6dd1fe30fed9cbc
+set NEWS_API_KEY=YOUR_NEWSAPI_KEY
 set GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 set FB_PAGE_TOKEN=your_facebook_page_token_here
 set FB_PAGE_ID=your_facebook_page_id_here
@@ -160,7 +160,7 @@ https://github.com/YOUR_USERNAME/fb-automation/settings/secrets/actions
 
 **Secret 1: NEWS_API_KEY**
 - Name: `NEWS_API_KEY`
-- Value: `bd3749c6a550467da6dd1fe30fed9cbc`
+- Value: `YOUR_NEWSAPI_KEY`
 - Click "Add secret"
 
 **Secret 2: GEMINI_API_KEY**
